@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>EcoNest Gardens - Expert Tree Trimming Services & Consultation</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap" rel="stylesheet" />
+<style>
+  /* Reset and base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background: #2e2e2e; /* Dark background */
+    color: #f0f0f0; /* Light text color */
+    line-height: 1.7;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a {
+    color: #81c784; /* Light green */
+    text-decoration: none;
+  }
+  a:hover, button:hover {
+    color: #a5d6a7; /* Lighter green */
+  }
+
+  /* Header - sticky with navigation */
+  header {
+    position: sticky;
+    top: 0;
+    background: #424242; /* Darker header */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    flex-wrap: wrap;
+  }
+  header .logo {
+    font-size: 2rem; /* Increased font size */
+    font-weight: 700;
+    color: #81c784; /* Light green */
+    display: flex;
+    align-items: center;
+    margin-right: 24px;
+  }
+  header .logo img {
+    height: 50px; /* Increased logo size */
+    margin-right: 8px;
+  }
+  .header-title {
+    margin-left: 8px;
+    user-select: none;
+    font-family: 'Montserrat', sans-serif; /* Different font for title */
+  }
+  nav.primary-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex-grow: 1;
+    flex-wrap: wrap;
+  }
+  nav.primary-nav a {
+    font-weight: 600;
+    font-size: 1.1rem; /* Increased font size */
+    padding: 10px 14px; /* Increased padding */
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    color: #f0f0f0; /* Light text color */
+  }
+  nav.primary-nav a:hover,
+  nav.primary-nav a.active {
+    background: #81c784; /* Light green */
+    color: #2e2e2e; /* Dark text */
+  }
+
+  /* Hero Section */
+  section.hero {
+    background: linear-gradient(135deg, #616161 0%, #424242 100%); /* Dark gradient */
+    padding: 96px 24px 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  section.hero h1 {
+    font-size: 4rem; /* Increased font size */
+    font-weight: 900;
+    color: #81c784; /* Light green */
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  section.hero p.slogan {
+    font-size: 1.8rem; /* Increased font size */
+    font-weight: 600;
+    color: #a5d6a7; /* Lighter green */
+    margin-bottom: 32px;
+  }
+  section.hero img.hero-image {
+    max-width: 350px; /* Increased image size */
+    border-radius: 24px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    display: block;
+  }
+
+  /* Main content wrapper */
+  main.content {
+    max-width: 1200px;
+    padding: 48px 24px;
+    margin: 0 auto;
+  }
+
+  /* Services section */
+  section.services {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+  section.services h2 {
+    font-size: 3rem; /* Increased font size */
+    color: #81c784; /* Light green */
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+  section.services p {
+    font-size: 1.1rem; /* Added description for services */
+    color: #f0f0f0; /* Light text color */
+    margin-bottom: 32px;
+  }
+  .service-cards {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  }
+  .service-card {
+    background: #424242; /* Dark card background */
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(129, 199, 132, 0.7);
+  }
+  .service-card img {
+    width: 200px; /* Increased image size */
+    height: 150px; /* Increased image size */
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.5);
+  }
+  .service-card h3 {
+    color: #81c784; /* Light green */
+    font-weight: 900;
+    margin: 0 0 14px 0;
+  }
+  .service-card p {
+    color: #f0f0f0; /* Light text color */
+    margin: 0;
+    font-size: 1.1rem; /* Increased font size */
+    line-height: 1.4;
+  }
+  /* Service price */
+  .service-price {
+    margin-top: 10px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: #81c784; /* Light green */
+  }
+
+  /* Consultation Form */
+  section.consultation {
+    background: #616161; /* Darker background */
+    border-radius: 24px;
+    box-shadow: 0 15px 28px rgba(159, 201, 131, 0.4);
+    padding: 56px 40px;
+    margin-bottom: 64px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #f0f0f0; /* Light text color */
+  }
+  section.consultation h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #81c784; /* Light green */
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  section.consultation p.intro {
+    font-size: 1.1rem;
+    max-width: 580px;
+    margin: 0 auto 36px auto;
+    line-height: 1.5;
+    color: #a5d6a7; /* Lighter green */
+  }
+  form.consultation-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  form.consultation-form label {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  form.consultation-form input,
+  form.consultation-form textarea,
+  form.consultation-form select {
+    padding: 14px 16px;
+    font-size: 1.05rem;
+    border-radius: 14px;
+    border: 2px solid #81c784; /* Light green */
+    background: #424242; /* Dark input background */
+    color: #f0f0f0; /* Light text color */
+    outline-offset: 2px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+  }
+  form.consultation-form input:focus,
+  form.consultation-form textarea:focus,
+  form.consultation-form select:focus {
+    border-color: #a5d6a7; /* Lighter green */
+  }
+  form.consultation-form textarea {
+    min-height: 120px; /* Increased height */
+  }
+  form.consultation-form button {
+    background: linear-gradient(45deg, #81c784, #4caf50); /* Gradient button */
+    border: none;
+    padding: 16px 0;
+    border-radius: 24px;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #204d20; /* Dark text */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  form.consultation-form button:hover {
+    background: #4caf50; /* Solid green on hover */
+    color: white;
+  }
+  form .form-error {
+    color: #b71c1c; /* Error color */
+    font-size: 0.95rem;
+    margin-top: -6px;
+  }
+  form .form-success {
+    text-align: center;
+    color: #81c784; /* Light green */
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  /* Feedback/Testimonial Section */
+  section.feedback {
+    max-width: 960px;
+    margin: 0 auto 64px auto;
+    text-align: center;
+  }
+  section.feedback h2 {
+    font-size: 2.8rem;
+    color: #81c784; /* Light green */
+    font-weight: 800;
+    margin-bottom: 28px;
+  }
+  .testimonial-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+  }
+  .testimonial {
+    background: #424242; /* Darker testimonial background */
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    padding: 28px 24px;
+    font-style: italic;
+    color: #f0f0f0; /* Light text color */
+    position: relative;
+  }
+  .testimonial::before {
+    content: '“';
+    font-size: 4rem;
+    font-weight: 700;
+    color: #81c784; /* Light green */
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    user-select: none;
+  }
+  .testimonial p {
+    margin-bottom: 18px;
+  }
+  .testimonial cite {
+    display: block;
+    font-style: normal;
+    font-weight: 700;
+    color: #a5d6a7; /* Lighter green */
+    text-align: right;
+  }
+
+  /* Garden Design Ideas Section */
+  section.design-ideas {
+    max-width: 960px;
+    margin: 0 auto 64px auto;
+    color: #f0f0f0; /* Light text color */
+  }
+  section.design-ideas h2 {
+    font-size: 2.8rem;
+    color: #81c784; /* Light green */
+    font-weight: 800;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  /* Removed images, so just text blocks now */
+  .design-ideas p,
+  .design-ideas ul {
+    max-width: 700px;
+    margin: 0 auto 20px auto;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: #f0f0f0; /* Light text color */
+  }
+  .design-ideas ul {
+    list-style: disc inside;
+  }
+
+  /* Tips Section */
+  section.tips {
+    max-width: 900px;
+    margin: 0 auto 64px auto;
+    color: #f0f0f0; /* Light text color */
+  }
+  section.tips h2 {
+    font-size: 2.8rem;
+    color: #81c784; /* Light green */
+    font-weight: 800;
+    margin-bottom: 28px;
+    text-align: center;
+  }
+  ul.tips-list {
+    list-style: square inside;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  ul.tips-list li {
+    margin-bottom: 14px;
+  }
+
+  /* FAQ Section */
+  section.faq {
+    max-width: 900px;
+    margin: 0 auto 64px auto;
+    color: #f0f0f0; /* Light text color */
+    background: #616161; /* Darker background */
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.5);
+  }
+  section.faq h2 {
+    font-size: 2.8rem;
+    color: #81c784; /* Light green */
+    font-weight: 900;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  details {
+    margin-bottom: 20px;
+    font-size: 1.05rem;
+    color: #f0f0f0; /* Light text color */
+    cursor: pointer;
+  }
+  summary {
+    font-weight: 700;
+    outline: none;
+  }
+  details[open] summary {
+    color: #a5d6a7; /* Lighter green */
+  }
+  details p {
+    margin-top: 8px;
+    padding-left: 16px;
+    line-height: 1.5;
+  }
+
+  /* Disclaimer Section */
+  section.disclaimer {
+    max-width: 720px;
+    margin: 0 auto 88px auto;
+    background: #424242; /* Darker background */
+    color: #a5d6a7; /* Lighter green */
+    font-style: italic;
+    font-size: 0.95rem;
+    padding: 14px 18px;
+    border-radius: 14px;
+    border: 1px solid #81c784; /* Light green */
+    text-align: center;
+    box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Footer */
+  footer {
+    background: #424242; /* Darker footer */
+    padding: 32px 24px;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #f0f0f0; /* Light text color */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.5);
+  }
+  footer address {
+    font-style: normal;
+    margin-top: 12px;
+  }
+  footer .customer-satisfaction {
+    margin-top: 14px;
+    font-size: 1.1rem;
+    color: #a5d6a7; /* Lighter green */
+    font-style: normal;
+  }
+
+  /* Inputs focus for accessibility */
+  input:focus, select:focus, textarea:focus, button:focus, a:focus {
+    outline: 3px solid #81c784; /* Light green */
+    outline-offset: 2px;
+  }
+
+  /* Responsive */
+
+  @media screen and (max-width: 900px) {
+    section.hero h1 {
+      font-size: 2.8rem;
+    }
+    section.hero p.slogan {
+      font-size: 1.3rem;
+    }
+    nav.primary-nav {
+      justify-content: center;
+    }
+    .service-cards {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    header {
+      justify-content: center;
+      gap: 12px;
+    }
+    nav.primary-nav {
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo" aria-label="EcoNest Gardens logo with flower icon">
+    <img src="b1.png" alt="Green cartoon flower icon" />
+    <span class="header-title">EcoNest Gardens</span>
+  </div>
+  <nav class="primary-nav" role="navigation" aria-label="Primary navigation">
+        <a href="index.html" tabindex="0" aria-current="page">Home</a>
+        <a href="privacy.html" tabindex="0">Privacy</a>
+        <a href="terms.html" tabindex="0">Terms & conditions</a>
+        <a href="cookies.html" tabindex="0">Cookies</a>
+        <a href="contact.html" tabindex="0">Contact us</a>
+  </nav>
+</header>
+
+<section class="hero" id="hero" tabindex="-1">
+  <div class="butterfly-hero" aria-hidden="true"></div>
+  <h1>EcoNest Gardens</h1>
+  <p class="slogan">Let your garden feel like home.</p>
+  <img
+    class="hero-image"
+    src="p1.png"
+    alt="Happy family surrounded by lush green flower garden with butterflies"
+    width="350" height="260" /* Adjusted image size */
+  />
+</section>
+
+<main class="content">
+  <section class="services" id="services" tabindex="-1">
+    <h2>Our Tree Trimming Services</h2>
+    <p>At EcoNest Gardens, we specialize in providing top-notch tree trimming services to ensure your trees remain healthy, beautiful, and safe. Our team of experts is trained to handle various tree species and sizes, ensuring that each tree receives the care it needs.</p>
+    <div class="service-cards" role="list">
+      <article class="service-card" role="listitem">
+        <img src=" s1.jpg" alt="Tree trimming service" />
+        <h3>Expert Tree Trimming</h3>
+        <p>Professional trimming to enhance the health and appearance of your trees. Our team uses the latest techniques and equipment to ensure precise cuts that promote growth and vitality.</p>
+        <div class="service-price">$150</div>
+      </article>
+      <article class="service-card" role="listitem">
+        <img src="s2.jpg" alt="Tree pruning service" />
+        <h3>Precision Pruning</h3>
+        <p>Careful pruning techniques to promote growth and longevity. We focus on removing dead or diseased branches while maintaining the tree's natural shape.</p>
+        <div class="service-price">$120</div>
+      </article>
+      <article class="service-card" role="listitem">
+        <img src="s3.jpg" alt="Tree shaping service" />
+        <h3>Tree Shaping</h3>
+        <p>Shaping services to maintain the desired look and structure of your trees. Our experts will help you achieve the perfect aesthetic for your landscape.</p>
+        <div class="service-price">$180</div>
+      </article>
+      <article class="service-card" role="listitem">
+        <img src="s4.jpg" alt="Tree removal service" />
+        <h3>Tree Removal</h3>
+        <p>Safe and efficient tree removal services for trees that are dead, diseased, or pose a risk to your property. We ensure minimal disruption to your landscape.</p>
+        <div class="service-price">$300</div>
+      </article>
+      <article class="service-card" role="listitem">
+        <img src="s5.jpg" alt="Stump grinding service" />
+        <h3>Stump Grinding</h3>
+        <p>Professional stump grinding services to remove unsightly stumps from your yard. We use specialized equipment to grind stumps below ground level.</p>
+        <div class="service-price">$100</div>
+      </article>
+      <article class="service-card" role="listitem">
+        <img src="s6.jpg" alt="Tree health assessment service" />
+        <h3>Tree Health Assessment</h3>
+        <p>Comprehensive assessments to evaluate the health of your trees. Our experts will provide recommendations for care and maintenance to ensure longevity.</p>
+        <div class="service-price">$75</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="consultation" id="consultation" tabindex="-1">
+    <h2>Get a Free Consultation</h2>
+    <p class="intro">Fill out the form below to schedule a consultation with our experts. We will assess your needs and provide tailored recommendations for your garden.</p>
+    <form class="consultation-form" action="#" method="post">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required />
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required />
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <section class="feedback" id="feedback" tabindex="-1">
+    <h2>What Our Clients Say</h2>
+    <p>We take pride in our customer satisfaction. Here’s what some of our clients have to say about their experiences with EcoNest Gardens:</p>
+    <ul class="testimonial-list">
+      <li class="testimonial">
+        <p>“The tree trimming service was exceptional! My garden has never looked better.”</p>
+        <cite>- Sarah J.</cite>
+      </li>
+      <li class="testimonial">
+        <p>“Professional and friendly team. Highly recommend their services!”</p>
+        <cite>- Mark T.</cite>
+      </li>
+      <li class="testimonial">
+        <p>“I was impressed with the attention to detail and the care they took with my trees.”</p>
+        <cite>- Emily R.</cite>
+      </li>
+    </ul>
+  </section>
+
+  <section class="faq" id="faq" tabindex="-1">
+    <h2>Frequently Asked Questions</h2>
+    <details>
+      <summary>How often should I trim my trees?</summary>
+      <p>It depends on the type of tree, but generally, once a year is recommended to maintain health and appearance.</p>
+    </details>
+    <details>
+      <summary>What is the best time of year for tree trimming?</summary>
+      <p>Late winter or early spring is usually the best time for most trees, as they are still dormant and can recover quickly.</p>
+    </details>
+    <details>
+      <summary>Can you trim trees in the summer?</summary>
+      <p>Yes, we can trim trees in the summer, but it is essential to consider the specific tree species and its growth cycle.</p>
+    </details>
+  </section>
+
+  <section class="disclaimer" id="disclaimer" tabindex="-1">
+    <p>Disclaimer: All services are subject to availability and weather conditions. Please contact us for more details.</p>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2023 EcoNest Gardens. All rights reserved.</p>
+  <address>
+    123 Greenway Drive, Garden City, GA 31408
+  </address>
+  <div class="customer-satisfaction">Your satisfaction is our priority!</div>
+</footer>
+</body>
+</html>
